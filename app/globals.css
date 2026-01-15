@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-inter: 'Inter', system-ui, sans-serif;
+    --font-poppins: 'Poppins', 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-white text-black;
+  }
+}
