@@ -75,7 +75,7 @@ export default function DijkstraVisualizer() {
       if (distances[closest] === Infinity) break
 
       setAlgoState(prev => ({ ...prev, current: closest }))
-      await new Promise(r => setTimeout(r, 500))
+      await new Promise(r => setTimeout(r, 800))
 
       // if (closest === endNode) break // Continued to visit all nodes
 
@@ -90,7 +90,7 @@ export default function DijkstraVisualizer() {
       const neighbors = edges.filter(e => e.source === closest)
       for (const edge of neighbors) {
         setAlgoState(prev => ({ ...prev, highlightedEdge: edge.id }))
-        await new Promise(r => setTimeout(r, 300))
+        await new Promise(r => setTimeout(r, 600))
 
         const alt = distances[closest] + edge.weight
         if (alt < distances[edge.target]) {
