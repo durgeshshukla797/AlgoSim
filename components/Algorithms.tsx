@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
 interface AlgorithmCard {
   title: string
@@ -8,8 +9,8 @@ interface AlgorithmCard {
 
 const algorithmCards: AlgorithmCard[] = [
   {
-    title: 'Sorting Algorithms',
-    algorithms: ['Bubble Sort', 'Selection Sort', 'Merge Sort'],
+    title: 'Merge Sort',
+    algorithms: ['Divide & Conquer', 'O(n log n) Efficiency', 'Stable Sort'],
     href: '/sorting/introduction',
   },
   {
@@ -53,23 +54,24 @@ export default function Algorithms() {
 
 function AlgorithmCard({ card }: { card: AlgorithmCard }) {
   return (
-    <div className="border-2 border-gray-300 rounded-lg p-6 hover:border-black hover:scale-[1.02] transition-all duration-200">
-      <h3 className="font-heading text-xl font-semibold text-black mb-4">
+    <div className="h-full flex flex-col bg-white border border-gray-800 rounded-xl p-6 shadow-sm hover:shadow-xl hover:border-black transition-all duration-300 hover:-translate-y-1">
+      <h3 className="font-heading text-xl font-bold text-gray-900 mb-4">
         {card.title}
       </h3>
-      <ul className="space-y-2 mb-6">
+      <ul className="space-y-3 mb-8">
         {card.algorithms.map((algo, index) => (
-          <li key={index} className="text-gray-700 flex items-center">
-            <span className="w-1.5 h-1.5 bg-gray-400 rounded-full mr-3"></span>
+          <li key={index} className="text-gray-600 flex items-center text-sm">
+            <span className="w-2 h-2 bg-indigo-500 rounded-full mr-3 shrink-0"></span>
             {algo}
           </li>
         ))}
       </ul>
       <Link
         href={card.href}
-        className="inline-flex items-center text-black font-medium hover:text-gray-700 transition-colors"
+        className="mt-auto inline-flex items-center justify-center w-full px-4 py-3 bg-gray-50 text-gray-900 font-semibold rounded-lg hover:bg-black hover:text-white transition-all duration-200 group border border-gray-200 hover:border-black"
       >
-        Visualize →
+        Visualize
+        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
       </Link>
     </div>
   )
