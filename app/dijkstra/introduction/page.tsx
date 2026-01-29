@@ -1,8 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ChevronDown, ChevronUp, Map, Clock, AlertTriangle, ArrowRight, CheckCircle, XCircle, Activity } from 'lucide-react'
-import Link from 'next/link'
+import { ChevronDown, ChevronUp, Map, Activity, ArrowRight, Navigation, Globe, Gamepad2, Radio, CheckCircle } from 'lucide-react'
 import AlgorithmLayout from '@/components/AlgorithmLayout'
 
 export default function DijkstraIntroductionPage() {
@@ -10,10 +9,10 @@ export default function DijkstraIntroductionPage() {
 
   return (
     <AlgorithmLayout title="Dijkstra's Algorithm" algorithm="dijkstra">
-      <div className="w-full max-w-5xl mx-auto mb-8 transition-all duration-500 ease-in-out">
+      <div className="w-full max-w-7xl mx-auto mb-8 transition-all duration-500 ease-in-out">
         {/* Header / Toggle Bar */}
         <div
-          className="w-full flex items-center justify-between p-6 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all group cursor-pointer"
+          className="w-full flex items-center justify-between p-6 bg-white rounded-xl shadow-sm border border-gray-100 border-l-4 border-l-indigo-500 hover:shadow-md transition-all group cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
         >
           <div className="flex items-center gap-4">
@@ -22,7 +21,7 @@ export default function DijkstraIntroductionPage() {
             </div>
             <div className="text-left">
               <h2 className="text-2xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">
-                Introduction to Dijkstra’s Algorithm
+                Introduction to Dijkstra's Algorithm
               </h2>
               <p className="text-gray-500 text-sm mt-1">
                 {isOpen ? 'Click to collapse theory' : 'Click to expand theory section'}
@@ -33,150 +32,311 @@ export default function DijkstraIntroductionPage() {
         </div>
 
         {/* Content Body */}
-        <div className={`overflow-hidden transition-all duration-700 ease-in-out ${isOpen ? 'max-h-[3000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-          <div className="bg-white mt-4 rounded-xl shadow-sm border border-gray-100 p-8 space-y-12 animate-fadeIn">
+        <div className={`overflow-hidden transition-all duration-700 ease-in-out ${isOpen ? 'max-h-[5000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className="bg-white mt-4 rounded-xl shadow-sm border border-gray-100 p-8 pt-10 animate-fadeIn">
 
-            {/* Section 1: Intro */}
-            <section className="prose max-w-none">
-              <div className="flex flex-col md:flex-row gap-8 items-start">
-                <div className="flex-1">
-                  <h3 className="text-3xl font-bold text-indigo-700 mb-4">
-                    What is it?
-                  </h3>
-                  <p className="text-gray-600 text-lg leading-relaxed mb-4">
-                    Ever wondered how <span className="font-semibold text-gray-900">Google Maps</span> finds the shortest and fastest route between two places?
-                  </p>
-                  <p className="text-gray-600 text-lg leading-relaxed">
-                    The answer lies in <span className="font-semibold text-indigo-600">Dijkstra’s Algorithm</span>. It is a graph-based greedy algorithm used to find the shortest path from a single source node to all other nodes in a weighted graph.
-                  </p>
-                </div>
-              </div>
-            </section>
+            <div className="max-w-4xl mx-auto">
 
-            {/* Section 2: Key Characteristics */}
-            <section>
-              <h3 className="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
-                <Activity className="text-indigo-500" size={20} /> Key Characteristics
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {[
-                  "Works on weighted graphs",
-                  "All edge weights must be positive",
-                  "Finds single-source shortest paths",
-                  "Uses a greedy approach"
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-100 hover:bg-indigo-50 hover:border-indigo-100 transition-colors cursor-default">
-                    <div className="w-2 h-2 rounded-full bg-indigo-500 flex-shrink-0" />
-                    <span className="font-medium text-gray-700 text-sm">{item}</span>
+              {/* 1. Definition / Algorithm Used */}
+              <section className="mb-16">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-100 pb-2">
+                  1. Definition & Algorithm
+                </h2>
+                <div className="prose prose-gray max-w-none">
+                  <p className="text-lg leading-relaxed text-gray-700 mb-6">
+                    <span className="font-semibold text-gray-900">Dijkstra’s Algorithm</span> is a greedy graph algorithm used to find the shortest path from a single source node to all other nodes in a weighted graph.
+                  </p>
+
+                  <div className="bg-amber-50 rounded-xl p-6 border border-amber-100 mb-8">
+                    <h3 className="font-semibold text-amber-900 mb-3 flex items-center gap-2">
+                      Important Conditions
+                    </h3>
+                    <ul className="space-y-2 text-amber-800 list-disc list-inside">
+                      <li>Works only with <span className="font-bold">non-negative</span> edge weights.</li>
+                      <li>Produces the minimum distance from the source to every vertex.</li>
+                    </ul>
                   </div>
-                ))}
-              </div>
-            </section>
 
-            {/* Section 3 & 4 Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Time Complexity */}
-              <div className="bg-indigo-50 rounded-xl p-6 border border-indigo-100 relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-5">
-                  <Clock size={100} />
+                  <div className="bg-gray-50 rounded-xl p-6 border border-gray-100 mb-8">
+                    <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                      <Activity className="text-indigo-500" size={20} /> Algorithmic Paradigm: Greedy Algorithm
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed mb-2">
+                      At every step, the algorithm:
+                    </p>
+                    <ul className="space-y-2 text-gray-700 list-disc list-inside">
+                      <li>Selects the <span className="font-medium text-gray-900">unvisited node</span> with the smallest known distance.</li>
+                      <li><span className="font-medium text-gray-900">Relaxes</span> its neighboring edges to update shortest paths.</li>
+                    </ul>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-indigo-900 mb-4 flex items-center gap-2">
-                  <Clock size={20} /> Time Complexity
-                </h3>
-                <ul className="space-y-3">
-                  <li className="flex justify-between items-center text-indigo-800">
-                    <span>Adjacency Matrix</span>
-                    <span className="font-mono font-bold bg-white/50 px-2 py-1 rounded">O(V²)</span>
-                  </li>
-                  <li className="flex justify-between items-center text-indigo-800">
-                    <span>Adjacency List + PQ</span>
-                    <span className="font-mono font-bold bg-white/50 px-2 py-1 rounded">O((V+E) log V)</span>
-                  </li>
-                </ul>
-                <div className="mt-4 pt-4 border-t border-indigo-200/50 flex gap-4 text-xs text-indigo-700 font-medium">
-                  <span>V = Vertices</span>
-                  <span>E = Edges</span>
+              </section>
+
+              <hr className="border-gray-100 mb-16" />
+
+              {/* 2. Example with Dry Run */}
+              <section className="mb-16">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-100 pb-2">
+                  2. Example with Dry Run
+                </h2>
+
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-gray-800 mb-6">Example Graph (Source: A)</h3>
+
+                  {/* Visual Graph Representation could go here, simplified as text/structure for now */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                      <h4 className="font-semibold text-gray-700 mb-2 border-b pb-2">Edges & Weights</h4>
+                      <ul className="grid grid-cols-2 gap-2 text-sm font-mono text-gray-600">
+                        <li>A → B: 4</li>
+                        <li>A → C: 2</li>
+                        <li>B → C: 1</li>
+                        <li>B → D: 5</li>
+                        <li>C → D: 8</li>
+                        <li>C → E: 10</li>
+                        <li>D → E: 2</li>
+                      </ul>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                      <h4 className="font-semibold text-gray-700 mb-2 border-b pb-2">Initialization</h4>
+                      <div className="grid grid-cols-5 text-center text-sm">
+                        <div className="p-1 bg-green-50 border border-green-100 rounded">A: 0</div>
+                        <div className="p-1 bg-gray-50 border border-gray-100 rounded">B: ∞</div>
+                        <div className="p-1 bg-gray-50 border border-gray-100 rounded">C: ∞</div>
+                        <div className="p-1 bg-gray-50 border border-gray-100 rounded">D: ∞</div>
+                        <div className="p-1 bg-gray-50 border border-gray-100 rounded">E: ∞</div>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-2 text-center">Visited = ∅</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    {/* Step 1 */}
+                    <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                      <h4 className="font-bold text-indigo-700 mb-2 flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-sm">1</span>
+                        Step 1: Pick A (dist = 0)
+                      </h4>
+                      <div className="pl-8 space-y-1 text-gray-600 text-sm">
+                        <p>Update B: 0 + 4 = 4 <span className="text-green-600 font-bold">✓</span></p>
+                        <p>Update C: 0 + 2 = 2 <span className="text-green-600 font-bold">✓</span></p>
+                        <p className="text-gray-400 mt-1">Visited = {'{A}'}</p>
+                      </div>
+                    </div>
+
+                    {/* Step 2 */}
+                    <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                      <h4 className="font-bold text-indigo-700 mb-2 flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-sm">2</span>
+                        Step 2: Pick C (dist = 2)
+                      </h4>
+                      <div className="pl-8 space-y-1 text-gray-600 text-sm">
+                        <p>Update D: 2 + 8 = 10 <span className="text-green-600 font-bold">✓</span></p>
+                        <p>Update E: 2 + 10 = 12 <span className="text-green-600 font-bold">✓</span></p>
+                        <p className="text-gray-400 mt-1">Visited = {'{A, C}'}</p>
+                      </div>
+                    </div>
+
+                    {/* Step 3 */}
+                    <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                      <h4 className="font-bold text-indigo-700 mb-2 flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-sm">3</span>
+                        Step 3: Pick B (dist = 4)
+                      </h4>
+                      <div className="pl-8 space-y-1 text-gray-600 text-sm">
+                        <p>Update C: 4 + 1 = 5 (No update, 2 {'<'} 5)</p>
+                        <p>Update D: 4 + 5 = 9 <span className="text-green-600 font-bold">✓</span> (New shortest path to D!)</p>
+                        <p className="text-gray-400 mt-1">Visited = {'{A, C, B}'}</p>
+                      </div>
+                    </div>
+
+                    {/* Step 4 */}
+                    <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                      <h4 className="font-bold text-indigo-700 mb-2 flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center text-sm">4</span>
+                        Step 4: Pick D (dist = 9)
+                      </h4>
+                      <div className="pl-8 space-y-1 text-gray-600 text-sm">
+                        <p>Update E: 9 + 2 = 11 <span className="text-green-600 font-bold">✓</span> (New shortest path to E!)</p>
+                        <p className="text-gray-400 mt-1">Visited = {'{A, C, B, D}'}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 bg-indigo-50 p-6 rounded-xl border border-indigo-100">
+                    <h4 className="font-bold text-indigo-900 mb-4 text-center">Final Shortest Distances from A</h4>
+                    <div className="flex justify-center gap-4 flex-wrap">
+                      {['A: 0', 'B: 4', 'C: 2', 'D: 9', 'E: 11'].map((item, idx) => (
+                        <div key={idx} className="bg-white px-4 py-2 rounded shadow-sm border border-indigo-200 font-mono font-bold text-indigo-700">
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </section>
 
-              {/* Basics */}
-              <div className="bg-white rounded-xl p-6 border border-gray-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Basics of the Algorithm</h3>
-                <ul className="space-y-3">
-                  {[
-                    "Starts from the source node",
-                    "Maintains shortest known distance to each node",
-                    "Updates distances using edge relaxation",
-                    "Marks nodes as visited once shortest path is confirmed",
-                    "Continues until all nodes are visited"
-                  ].map((step, i) => (
-                    <li key={i} className="flex items-start gap-3 text-gray-600 text-sm">
-                      <span className="flex-shrink-0 w-5 h-5 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 text-xs font-bold mt-0.5">{i + 1}</span>
-                      {step}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+              <hr className="border-gray-100 mb-16" />
 
-            {/* Warning */}
-            <div className="flex items-start gap-4 p-4 bg-amber-50 border border-amber-200 rounded-lg text-amber-900">
-              <AlertTriangle className="flex-shrink-0 text-amber-600 mt-1" />
-              <div>
-                <h4 className="font-bold text-amber-800">Important Requirement</h4>
-                <p className="text-sm mt-1 text-amber-700 leading-relaxed">
-                  Dijkstra’s Algorithm <span className="font-bold">cannot handle negative edge weights</span> because once a node is marked visited, its distance is considered final. Negative edges could theoretically reduce the distance to an already visited node, breaking the greedy assumption.
+              {/* 3. Main Logical Code */}
+              <section className="mb-16">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-100 pb-2">
+                  3. Implementation
+                </h2>
+                <p className="text-lg leading-relaxed text-gray-700 mb-6">
+                  Core logic using a standard Priority Queue in C++:
                 </p>
-              </div>
-            </div>
 
-            {/* Steps Timeline */}
-            <section>
-              <h3 className="text-xl font-semibold text-gray-800 mb-8">Step-by-Step Algorithm</h3>
-              <div className="relative pl-8 border-l-2 border-indigo-100 space-y-8">
-                {[
-                  { title: "Initialization", desc: "Set source distance = 0, others = ∞" },
-                  { title: "Selection", desc: "Select unvisited node with minimum distance" },
-                  { title: "Relaxation", desc: "Update distances of all unvisited neighbors if a shorter path is found through current node" },
-                  { title: "Mark Visited", desc: "Mark the current node as visited. Its distance is now final." },
-                  { title: "Repeat", desc: "Repeat until all nodes are visited or destination is reached" }
-                ].map((step, idx) => (
-                  <div key={idx} className="relative">
-                    <span className="absolute -left-[41px] top-1 w-6 h-6 rounded-full bg-indigo-600 border-4 border-white shadow-sm ring-2 ring-indigo-50" />
-                    <h4 className="font-bold text-gray-900">Step {idx + 1}: {step.title}</h4>
-                    <p className="text-gray-600 mt-1">{step.desc}</p>
+                <div className="relative group">
+                  <div className="absolute -top-3 left-4 px-2 bg-white text-xs font-semibold text-gray-400 tracking-wider">
+                    C++
                   </div>
-                ))}
-              </div>
-            </section>
+                  <div className="bg-gray-50 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+                    <div className="overflow-x-auto p-6 pt-8">
+                      <pre className="font-mono text-sm leading-relaxed text-gray-800">
+                        {`#include <bits/stdc++.h>
+using namespace std;
 
-            {/* Pros & Cons */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 bg-green-50 rounded-xl border border-green-100">
-                <h3 className="text-lg font-bold text-green-900 mb-4 flex items-center gap-2">
-                  <CheckCircle size={20} className="text-green-600" /> Advantages
-                </h3>
-                <ul className="space-y-2 text-green-800 text-sm">
-                  {["Efficient for shortest paths in non-negative graphs", "Works for single source → all destinations", "Can stop early for single destination", "Widely used in routing protocols"].map((p, i) => (
-                    <li key={i} className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green-500 rounded-full" /> {p}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="p-6 bg-red-50 rounded-xl border border-red-100">
-                <h3 className="text-lg font-bold text-red-900 mb-4 flex items-center gap-2">
-                  <XCircle size={20} className="text-red-600" /> Disadvantages
-                </h3>
-                <ul className="space-y-2 text-red-800 text-sm">
-                  {["Cannot handle negative edges", "Slower than BFS for unweighted graphs", "Slower for very large graphs compared to A*", "Blind search (doesn't use heuristics)"].map((p, i) => (
-                    <li key={i} className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-red-500 rounded-full" /> {p}</li>
-                  ))}
-                </ul>
-              </div>
+void dijkstra(int src, vector<vector<pair<int,int>>>& adj, int V) {
+    // Min-heap priority queue to store {distance, node}
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> pq;
+    vector<int> dist(V, INT_MAX);
+
+    dist[src] = 0;
+    pq.push({0, src});
+
+    while (!pq.empty()) {
+        int node = pq.top().second;
+        int d = pq.top().first;
+        pq.pop();
+
+        // If current distance is greater than already found shortest, skip
+        if (d > dist[node]) continue;
+
+        for (auto it : adj[node]) {
+            int next = it.first;
+            int weight = it.second;
+
+            // Relaxation Step
+            if (dist[node] + weight < dist[next]) {
+                dist[next] = dist[node] + weight;
+                pq.push({dist[next], next});
+            }
+        }
+    }
+}`}
+                      </pre>
+                    </div>
+                  </div>
+                  <div className="mt-4 flex gap-4 text-sm text-gray-600">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle size={16} className="text-green-500" /> Priority Queue ensures closest node selection
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle size={16} className="text-green-500" /> Edge relaxation updates shortest paths
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <hr className="border-gray-100 mb-16" />
+
+              {/* 4. Complexity Analysis */}
+              <section className="mb-16">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-100 pb-2">
+                  4. Complexity Analysis
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-center">
+                    <div className="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">Min Heap (PQ) Time</div>
+                    <div className="text-2xl font-bold text-gray-900">O((V + E) log V)</div>
+                    <div className="text-xs text-gray-400 mt-1">Standard Implementation</div>
+                  </div>
+                  <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-center">
+                    <div className="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">Space Complexity</div>
+                    <div className="text-2xl font-bold text-gray-900">O(V)</div>
+                    <div className="text-xs text-gray-400 mt-1">Distance Array + PQ</div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-4">
+                  <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm text-center">
+                    <div className="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-1">Array-based Time</div>
+                    <div className="text-lg font-bold text-gray-800">O(V²)</div>
+                  </div>
+                  <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm text-center">
+                    <div className="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-1">Edge Weights</div>
+                    <div className="text-lg font-bold text-gray-800">Non-negative</div>
+                  </div>
+                  <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm text-center">
+                    <div className="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-1">Type</div>
+                    <div className="text-lg font-bold text-gray-800">Single Source</div>
+                  </div>
+                </div>
+              </section>
+
+              <hr className="border-gray-100 mb-16" />
+
+              {/* 5. Applications */}
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-100 pb-2">
+                  5. Applications
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 mr-4">
+                      <Navigation size={20} />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-1">GPS & Navigation</h3>
+                      <p className="text-gray-600 leading-relaxed">Finding the shortest route between locations on a map.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 mr-4">
+                      <Globe size={20} />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-1">Network Routing</h3>
+                      <p className="text-gray-600 leading-relaxed">Routing protocols like OSPF use Dijkstra to find the best path for data.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-600 mr-4">
+                      <Activity size={20} />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-1">Traffic Optimization</h3>
+                      <p className="text-gray-600 leading-relaxed">Optimizing traffic flow in urban planning.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 mr-4">
+                      <Gamepad2 size={20} />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-1">Game Development</h3>
+                      <p className="text-gray-600 leading-relaxed">Pathfinding for AI characters (though A* is often preferred).</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-600 mr-4">
+                      <Radio size={20} />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-1">Telecommunications</h3>
+                      <p className="text-gray-600 leading-relaxed">Routing calls and data efficiently across networks.</p>
+                    </div>
+                  </div>
+
+                </div>
+              </section>
+
             </div>
-
-            {/* Footer Action */}
-           
-
           </div>
         </div>
       </div>
