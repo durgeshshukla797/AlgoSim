@@ -16,7 +16,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'AlgoScope - Algorithm Visualiser',
+  title: 'AlgoSim - Algorithm Visualiser',
   description: 'Understand algorithms through step-by-step visualization, structured learning, and pre & post quizzes with detailed feedback.',
 }
 

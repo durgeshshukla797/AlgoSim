@@ -18,16 +18,16 @@ export default function Header() {
     { label: 'Home', href: '/' },
     { label: 'Algorithms', href: '#algorithms' },
     { label: 'Team', href: '#team' },
-    { label: 'GitHub', href: 'https://github.com' },
+    { label: 'GitHub', href: 'https://github.com/durgeshshukla797/AlgoSim' },
   ]
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 h-16 bg-white border-b border-gray-200 transition-shadow duration-200`}
+      className={`fixed top-0 left-0 right-0 z-50 h-16 bg-white border-b border-gray-800 transition-shadow duration-200`}
     >
       <div className="container mx-auto px-6 h-full flex items-center justify-between">
         <Link href="/" className="font-heading text-2xl font-bold text-black">
-          AlgoScope
+          AlgoSim
         </Link>
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
