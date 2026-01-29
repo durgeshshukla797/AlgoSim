@@ -11,44 +11,44 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     name: 'Disha Chauhan',
-    role: 'Algorithm Developer',
+    role: 'Implemented Linked List',
     image: '/team/disha-chauhan.jpg',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
+    github: 'https://github.com/Dishachauhan05',
+    linkedin: 'https://www.linkedin.com/in/disha-chauhan-5489442a7/',
   },
   {
     name: 'Dhruv Yadav',
-    role: 'Implemented Sorting Algorithms',
+    role: 'Implemented Merge Sort',
     image: '/team/dhruv-yadav.jpg',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
+    github: 'https://github.com/Dhruv197252',
+    linkedin: 'https://www.linkedin.com/in/dhruvyadav1974/',
   },
   {
     name: 'Durgesh Shukla',
-    role: 'Quiz System Architect',
-    image: '/team/juilee-lambe.jpg',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
+    role: 'Implemented Dijkstra',
+    image: '',
+    github: 'https://github.com/durgeshshukla797',
+    linkedin: 'https://www.linkedin.com/in/durgesh-shukla-30857528a/',
   },
   {
-    name: 'Janhvi Thakre',
-    role: 'UI/UX Designer',
-    image: '/team/juilee-lambe.jpg',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
+    name: 'Janhvi Thakare',
+    role: 'Implemented Hashing',
+    image: '/team/janhvi-thakare.jpg',
+    github: 'https://github.com/janhvithakare',
+    linkedin: 'https://www.linkedin.com/in/janhvi-thakare-54a00932b/',
   },
   {
     name: 'Juilee Lambe',
-    role: 'Backend Engineer',
+    role: 'Implemented Tower of Hanoi',
     image: '/team/juilee-lambe.jpg',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
+    github: 'https://github.com/jui1ee',
+    linkedin: 'https://www.linkedin.com/in/juilee-lambe-a3361128a/',
   },
 ]
 
 export default function Team() {
   return (
-    <section id="team" className="py-24 px-6 bg-white">
+    <section id="team" className="py-24 px-6 bg-white border-b border-gray-800">
       <div className="container mx-auto max-w-7xl">
         <h2 className="font-heading text-4xl md:text-5xl font-bold text-black text-center mb-16">
           Meet the Team
@@ -65,7 +65,7 @@ export default function Team() {
 
 function TeamCard({ member }: { member: TeamMember }) {
   return (
-    <div className="text-center group">
+    <div className="text-center group border border-gray-800 rounded-xl p-6 hover:shadow-lg transition-all">
       <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden group-hover:bg-gray-300 transition-colors relative">
         {member.image ? (
           <Image
